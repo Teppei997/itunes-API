@@ -1,10 +1,10 @@
 // カード表示花形
-const Card = ({ src, text ,ttt}) => `
+const Card = ({ src, text ,click}) => `
   <div class="col-4 mb-5">
     <div class="card">
       <img src="${src}" class="card-img-top" alt="...">
       <div class="card-body">
-      <a href=" ${ttt}" target="_blank">
+      <a href=" ${click}" target="_blank">
         <h5 class="card-title">${text}</h5>
         <p class="card-text"></p>
       </a>  
@@ -29,7 +29,7 @@ $('#search-btn').on('click', () => {
     console.log(response)
     console.log(response.results[0].artworkUrl100)
     // let url = response.results[0].artViewurl;
-    for (let i=0; i< 50 ; i++ ) {
+    for (let i=0; i < response.results.length; i++ ) {
       
       let url = response.results[i].artworkUrl100;
       console.log(url)
@@ -39,7 +39,7 @@ $('#search-btn').on('click', () => {
 
       
       $('#results').append(
-            Card({src:url, text:textart, ttt:view}));
+        Card({src:url, text:textart, click:view}));
          
     }
   }).fail((error) => {
